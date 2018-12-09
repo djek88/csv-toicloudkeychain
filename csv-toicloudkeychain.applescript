@@ -13,9 +13,9 @@ tell application "System Events"
 		set frontmost to true
 		keystroke "," using command down
 		tell window 1
-			click button "Passwords" of toolbar 1 of it
-			repeat until (exists button "Add" of group 1 of group 1 of it)
-				if not (exists button "Add" of group 1 of group 1 of it) then
+			click button "Пароли" of toolbar 1 of it
+			repeat until (exists button "Добавить" of group 1 of group 1 of it)
+				if not (exists button "Добавить" of group 1 of group 1 of it) then
 					display dialog "To begin importing, unlock Safari passwords then click OK. Please do not use your computer until the process has completed." with title "CSV to iCloud Keychain"
 				end if
 			end repeat
@@ -25,7 +25,7 @@ end tell
 
 -- getting values for each record
 set AppleScript's text item delimiters to ","
-repeat with i from 1 to length of recs
+repeat with i from 2 to length of recs
 	-- if it ends with a blank line
 	if (item i of recs) is "" then exit repeat
 	-- ignore item 1 "name"
@@ -39,7 +39,7 @@ repeat with i from 1 to length of recs
 			set frontmost to true
 			tell window 1
 				
-				click button "Add" of group 1 of group 1 of it
+				click button "Добавить" of group 1 of group 1 of it
 				-- write fields
 				tell sheet 1 of it
 					set value of text field 1 of it to kcURL
